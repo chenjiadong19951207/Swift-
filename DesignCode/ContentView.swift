@@ -9,30 +9,45 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State var show = false
+    
     var body: some View {
         ZStack{
             
             TitleView()
-             .blur(radius: 20)
-            
+                .blur(radius: show ? 20:0)
+                .animation(.default)
             
             CardBottomView()
-                .blur(radius: 20)
-            
-            CardView().offset(x:0,y:-40)
+                .blur(radius: show ? 20:0)
+                .animation(.default)
+            CardView()
+                .background(show ? Color.red:Color("background8"))
+                .cornerRadius(10)
+                .shadow(radius: 20)
+                .offset(x:0,y:show ? -400:-40)
                 .scaleEffect(0.85)
-                .rotationEffect(Angle(degrees: 15))
-                .rotation3DEffect(Angle(degrees:50), axis: (x: 10, y: 10, z: 10))
+                .rotationEffect(Angle(degrees: show ? 15:0))
+                //.rotation3DEffect(Angle(degrees:50), axis: (x: 10, y: 10, z: 10))
                 .blendMode(.hardLight)
-            CardView().offset(x:0,y:-20)
+                .animation(Animation.easeInOut(duration: 0.7))
+            CardView()
+                .background(show ? Color.red:Color("background8"))
+                .cornerRadius(10)
+                .shadow(radius: 20)
+                .offset(x:0,y:show ? -200:-20)
                 .scaleEffect(0.9)
-                .rotationEffect(Angle(degrees: 10))
-                .rotation3DEffect(Angle(degrees:40), axis: (x: 10, y: 10, z: 10))
+                .rotationEffect(Angle(degrees:show ? 10:0))
                 .blendMode(.hardLight)
+                .animation(Animation.easeInOut(duration:0.5))
+                
             CertificateView()
-                .rotationEffect(Angle(degrees: 5))
-                .rotation3DEffect(Angle(degrees:30), axis: (x: 10, y: 10, z: 10))
-            
+                .rotationEffect(Angle(degrees: show ? 5:0))
+            //.rotation3DEffect(Angle(degrees:show ? 30:0), axis: (x: 10, y: 10, z: 10))
+                .animation(.default)
+                .onTapGesture {
+                    self.show.toggle()
+            }
             
         }
     }
@@ -50,10 +65,8 @@ struct CardView: View {
             Text("Card Back")
         }
         .frame(width:340,height:220)
-        .background(/*@START_MENU_TOKEN@*/Color.blue/*@END_MENU_TOKEN@*/)
-        .cornerRadius(10)
-        .shadow(radius: 20)
-        .offset(x:0,y:-20)
+        
+        
     }
 }
 
