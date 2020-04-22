@@ -10,7 +10,7 @@ import SwiftUI
 
 struct ContentView: View {
     @State var show = false
-    
+    @State var viewState = CGSize.zero
     var body: some View {
         ZStack{
             
@@ -42,12 +42,17 @@ struct ContentView: View {
                 .animation(Animation.easeInOut(duration:0.5))
                 
             CertificateView()
+                .offset(x:viewState.width,y:viewState.height)
                 .rotationEffect(Angle(degrees: show ? 5:0))
             //.rotation3DEffect(Angle(degrees:show ? 30:0), axis: (x: 10, y: 10, z: 10))
                 .animation(.default)
                 .onTapGesture {
                     self.show.toggle()
             }
+        .gesture(DragGesture()
+        
+            
+            )
             
         }
     }
