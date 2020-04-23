@@ -9,12 +9,19 @@
 import SwiftUI
 
 struct Home: View {
+    var menuItems = ["My Account","Billing","Team","Sign out"]
+    var menu = menuData
+    
     var body: some View {
         VStack(alignment: .leading,spacing: 20) {
-            MenuRow(image: "person.crop.circle", text: "My Account")
-            MenuRow(image: "creditcard", text: "Billing")
-            MenuRow(image: "person.and.person", text: "Team")
-            MenuRow(image: "arrow.uturn.down", text: "Sign out")
+            ForEach(menu){
+                item in MenuRow(image:item.icon,text:item.title)
+                
+            }
+            
+//            MenuRow(image: "creditcard", text: menuItems[1])
+//            MenuRow(image: "person.and.person", text: menuItems[2])
+//            MenuRow(image: "arrow.uturn.down", text: menuItems[3])
             Spacer()
         }
     .padding(30)
@@ -48,3 +55,23 @@ struct MenuRow: View {
         }
     }
 }
+
+
+struct Menu : Identifiable{
+    var id = UUID()
+    var title:String
+    var icon:String
+    
+}
+
+let menuData = [
+    
+    Menu(title: "My Account",icon:"person.crop.circle"),
+    Menu(title: "Billing", icon: "creditcard"),
+    Menu(title: "Team", icon: "person.and.person"),
+    Menu(title: "Sign out", icon: "arrow.uturn.down")
+]
+
+
+
+
