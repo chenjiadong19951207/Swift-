@@ -9,28 +9,14 @@
 import SwiftUI
 
 struct Home: View {
-    var menuItems = ["My Account","Billing","Team","Sign out"]
-    var menu = menuData
-    
+    @State var show = false
     var body: some View {
-        VStack(alignment: .leading,spacing: 20) {
-            ForEach(menu){
-                item in MenuRow(image:item.icon,text:item.title)
-                
+        ZStack {
+            Button(action: {self.show.toggle()}) {
+                Text("Open menu")
             }
-            
-//            MenuRow(image: "creditcard", text: menuItems[1])
-//            MenuRow(image: "person.and.person", text: menuItems[2])
-//            MenuRow(image: "arrow.uturn.down", text: menuItems[3])
-            Spacer()
+            MenuView(show: $show)
         }
-    .padding(30)
-        .padding(.top,20)
-        .frame(minWidth:0,maxWidth:.infinity)
-        .background(Color.white)
-    .cornerRadius(30)
-        .padding(.trailing,60)
-    .shadow(radius: 20)
     }
 }
 
@@ -75,3 +61,35 @@ let menuData = [
 
 
 
+
+struct MenuView: View {
+    var menuItems = ["My Account","Billing","Team","Sign out"]
+    var menu = menuData
+    @Binding var show :Bool
+    var body: some View {
+        VStack(alignment: .leading,spacing: 20) {
+            ForEach(menu){
+                item in MenuRow(image:item.icon,text:item.title)
+                
+            }
+            
+            //            MenuRow(image: "creditcard", text: menuItems[1])
+            //            MenuRow(image: "person.and.person", text: menuItems[2])
+            //            MenuRow(image: "arrow.uturn.down", text: menuItems[3])
+            Spacer()
+        }
+        .padding(30)
+        .padding(.top,20)
+        .frame(minWidth:0,maxWidth:.infinity)
+        .background(Color.white)
+        .cornerRadius(30)
+        .padding(.trailing,60)
+        .shadow(radius: 20)
+        .rotation3DEffect(Angle(degrees: show ? 0 : 60), axis: (x: 0, y: 10.0, z: 0))
+        .offset(x:show ? 0 : -UIScreen.main.bounds.width)
+        .onTapGesture {
+            self.show.toggle()
+            
+        }
+    }
+}
