@@ -10,11 +10,23 @@ import SwiftUI
 
 struct Home: View {
     @State var show = false
+    @State var showProfile = false
+    
     var body: some View {
         ZStack {
-            Button(action: {self.show.toggle()}) {
-                Text("Open menu")
-            }
+            
+            ContentView()
+                .background(Color.white)
+                .cornerRadius(30)
+                .shadow(radius: 20)
+                .animation(.spring())
+                .offset(y: showProfile ? 40 : UIScreen.main.bounds.height)
+            MenuButton(show : $show)
+                .offset(x:-30,y:showProfile ? 0 : 80)
+                .animation(.spring())
+            MenuRight(show : $showProfile)
+                .offset(x:-16,y: showProfile ? 0 : 88)
+            .animation(.spring())
             MenuView(show: $show)
         }
     }
@@ -90,6 +102,63 @@ struct MenuView: View {
         .onTapGesture {
             self.show.toggle()
             
+        }
+    }
+}
+
+struct CircleButton: View {
+    var icon = "person.crop.circle"
+    var body: some View {
+        HStack {
+            
+            Image(systemName:icon )
+                .foregroundColor(.black)
+        }
+            
+        .frame(width: 44, height: 44)
+        .background(Color.white)
+        .cornerRadius(30)
+        .shadow(color:Color("buttonShadow"),radius:10,x:0,y:10)
+    }
+}
+
+struct MenuButton: View {
+    @Binding var show : Bool
+    var body: some View {
+        ZStack(alignment: .topLeading) {
+            Button(action: {self.show.toggle()}) {
+                HStack {
+                    Spacer()
+                    Image(systemName: "list.dash")
+                        .foregroundColor(.black)
+                }
+                .padding(.trailing, 20)
+                .frame(width: 90, height: 60)
+                .background(Color.white)
+                .cornerRadius(30)
+                .shadow(color:Color("buttonShadow"),radius:10,x:0,y:10)
+            }
+            .frame(minWidth:0,maxWidth:.infinity,minHeight:0,maxHeight:.infinity,alignment:.topLeading)
+        }
+    }
+}
+
+struct MenuRight: View {
+    @Binding var show : Bool
+    var body: some View {
+        ZStack(alignment: .topTrailing) {
+            HStack {
+                Button(action: {self.show.toggle()}) {
+                    CircleButton(icon:"person.crop.circle")
+                    Button(action: {self.show.toggle()}) {
+                        CircleButton(icon:"bell")
+                    }
+                }
+                    
+                    
+                    
+                .frame(minWidth:0,maxWidth:.infinity,minHeight:0,maxHeight:.infinity,alignment:.topTrailing)
+            }
         }
     }
 }
