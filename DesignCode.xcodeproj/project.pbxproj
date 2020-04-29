@@ -14,6 +14,7 @@
 		2949C395244B55740029F357 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2949C394244B55740029F357 /* Assets.xcassets */; };
 		2949C398244B55740029F357 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2949C397244B55740029F357 /* Preview Assets.xcassets */; };
 		2949C39B244B55740029F357 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2949C399244B55740029F357 /* LaunchScreen.storyboard */; };
+		29570537245974FF004DD54D /* HomeList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29570536245974FF004DD54D /* HomeList.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		2949C397244B55740029F357 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		2949C39A244B55740029F357 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2949C39C244B55740029F357 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		29570536245974FF004DD54D /* HomeList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeList.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +64,7 @@
 				2949C390244B55710029F357 /* SceneDelegate.swift */,
 				2949C392244B55710029F357 /* ContentView.swift */,
 				2941FF3C24504AFA0062BE52 /* Home.swift */,
+				29570536245974FF004DD54D /* HomeList.swift */,
 				2949C394244B55740029F357 /* Assets.xcassets */,
 				2949C399244B55740029F357 /* LaunchScreen.storyboard */,
 				2949C39C244B55740029F357 /* Info.plist */,
@@ -150,6 +153,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2949C38F244B55710029F357 /* AppDelegate.swift in Sources */,
+				29570537245974FF004DD54D /* HomeList.swift in Sources */,
 				2949C391244B55710029F357 /* SceneDelegate.swift in Sources */,
 				2941FF3D24504AFA0062BE52 /* Home.swift in Sources */,
 				2949C393244B55710029F357 /* ContentView.swift in Sources */,
